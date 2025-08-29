@@ -1,0 +1,25 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>게시물 목록</title>
+</head>
+<body>
+<a th:href="@{/posts}">목록</a>
+<a th:href="@{/posts/{id}/edit(id=${post.id})}">수정</a>
+<div>
+    게시물ID : <span th:text="${post.id}"></span><br>
+    작성자 : <span th:text="${post.author}"></span><br>
+    작성일 : <span th:text="${post.createdAt}"></span><br>
+    수정일 : <span th:text="${post.updatedAt}"></span><br>
+    <p th:text="${post.content}"></p>
+</div>
+<form th:action="@{/posts/{id}/delete(id=${post.id})}"
+      method="post">
+    <button>삭제</button>
+</form>
+</body>
+</html>

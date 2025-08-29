@@ -1,0 +1,20 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title th:text="${postId == null} ? '게시물 등록' : '게시물 수정'">게시물 등록</title>
+</head>
+<body>
+<a th:href="@{/posts}">목록으로</a>
+<form th:object="${post}" th:action="${postId == null} ? @{/posts/new} : @{/posts/{id}/edit(id=${postId})}" method="post">
+    <input th:field="*{title}" required placeholder="제목">
+    <!--  수정 시에는 작성자 기입을 막음  -->
+    <input th:field="*{author}" required placeholder="작성자" th:readonly="${postId != null}">
+    <textarea th:field="*{content}" required placeholder="내용"></textarea>
+    <button th:text="${postId == null} ? '등록' : '수정'">등록</button>
+</form>
+</body>
+</html>

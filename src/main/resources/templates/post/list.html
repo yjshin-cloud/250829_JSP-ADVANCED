@@ -1,0 +1,25 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>게시물 목록</title>
+</head>
+<body>
+<a th:href="@{/posts/new}">새 글 등록</a>
+
+<ul th:if="${!posts.isEmpty()}">
+    <li th:each="post : ${posts}">
+        <span th:text="${post.id}"></span>
+        <a th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}">제목</a>
+        - <span th:text="${post.author}"></span>
+        (<span th:text="${post.createdAt}"></span>)
+    </li>
+</ul>
+<p th:if="${posts.isEmpty()}">
+    등록된 게시물이 없습니다
+</p>
+</body>
+</html>
